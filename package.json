@@ -1,0 +1,17 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "repository": "https://github.com/CirclePeopleArchivers/web.git",
+  "license": "GPLv3",
+  "scripts": {
+    "start:development": "cross-env NODE_ENV=development nodemon src/server.js",
+    "start:production": "cross-env NODE_ENV=production nodemon src/server.js",
+    "test": "eslint ./"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "eslint": "^5.12.0",
+    "nodemon": "^1.18.9"
+  }
+}
