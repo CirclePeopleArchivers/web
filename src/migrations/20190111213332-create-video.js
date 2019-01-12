@@ -1,42 +1,38 @@
 module.exports = {
     up: (queryInterface, Sequelize) => queryInterface.createTable('Videos', {
         id: {
-            type: Sequelize.CHAR(255),
+            type: Sequelize.STRING(16),
             allowNull: false,
             primaryKey: true,
             unique: true,
         },
-        video_id: {
-            type: Sequelize.CHAR(16),
+        title: {
+            type: Sequelize.STRING(255),
             allowNull: false,
         },
-        parent_id: {
-            type: Sequelize.CHAR(16),
-            allowNull: true,
-        },
-        content: {
-            type: Sequelize.TEXT,
+        view_count: {
+            type: Sequelize.INTEGER,
             allowNull: false,
         },
         like_count: {
             type: Sequelize.INTEGER,
             allowNull: false,
         },
-        author_id: {
-            type: Sequelize.CHAR(255),
+        dislike_count: {
+            type: Sequelize.INTEGER,
             allowNull: false,
         },
-        author_name: {
-            type: Sequelize.CHAR(255),
-            allowNull: false,
-        },
-        published_date: {
+        upload_date: {
             type: Sequelize.DATE,
             allowNull: false,
         },
-        updated_date: {
-            type: Sequelize.DATE,
-            allowNull: true,
+        description: {
+            type: Sequelize.TEXT,
+            allowNull: false,
+        },
+        file_type: {
+            type: Sequelize.STRING(16),
+            allowNull: false,
         },
         createdAt: {
             allowNull: false,

@@ -1,0 +1,25 @@
+<%- include('layouts/default/head') %>
+
+<%- include('layouts/default/header') %>
+
+<br />
+
+<div class="container">
+    <% videos.forEach(function(video, index) { %>
+        <% if (index % 3 === 0) { %>
+            <% if (index != 0) { %></div><br /><% } %>
+            <div class="row">
+        <% } %>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="" class="card-img-top" alt="Miniature" />
+                        <div class="card-body">
+                            <h5 class="card-title"><%= video.title %></h5>
+                            <a class="btn btn-primary" href="/video/<%= video.id %>">Watch</a>
+                        </div>
+                    </div>
+                </div>
+    <% }); %>
+</div>
+
+<%- include('layouts/default/foot') %>

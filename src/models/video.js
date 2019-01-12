@@ -5,13 +5,13 @@
 module.exports = (sequelize, DataTypes) => {
     const Video = sequelize.define('Video', {
         id: {
-            type: DataTypes.CHAR(16),
+            type: DataTypes.STRING(16),
             allowNull: false,
             primaryKey: true,
             unique: true,
         },
         title: {
-            type: DataTypes.CHAR(255),
+            type: DataTypes.STRING(255),
             allowNull: false,
         },
         view_count: {
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         file_type: {
-            type: DataTypes.CHAR(16),
+            type: DataTypes.STRING(16),
             allowNull: false,
         },
     });

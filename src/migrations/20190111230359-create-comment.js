@@ -1,17 +1,17 @@
 module.exports = {
     up: (queryInterface, Sequelize) => queryInterface.createTable('Comments', {
         id: {
-            type: Sequelize.CHAR(255),
+            type: Sequelize.STRING(255),
             allowNull: false,
             primaryKey: true,
             unique: true,
         },
         video_id: {
-            type: Sequelize.CHAR(16),
+            type: Sequelize.STRING(16),
             allowNull: false,
         },
         parent_id: {
-            type: Sequelize.CHAR(255),
+            type: Sequelize.STRING(255),
             allowNull: true,
         },
         content: {
@@ -23,7 +23,7 @@ module.exports = {
             allowNull: false,
         },
         author_id: {
-            type: Sequelize.CHAR(255),
+            type: Sequelize.STRING(255),
             allowNull: false,
         },
         author_name: {

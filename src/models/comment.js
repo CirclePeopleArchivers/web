@@ -5,17 +5,17 @@
 module.exports = (sequelize, DataTypes) => {
     const Comment = sequelize.define('Comment', {
         id: {
-            type: DataTypes.CHAR(255),
+            type: DataTypes.STRING(255),
             allowNull: false,
             primaryKey: true,
             unique: true,
         },
         video_id: {
-            type: DataTypes.CHAR(16),
+            type: DataTypes.STRING(16),
             allowNull: false,
         },
         parent_id: {
-            type: DataTypes.CHAR(255),
+            type: DataTypes.STRING(255),
             allowNull: true,
         },
         content: {
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         author_id: {
-            type: DataTypes.CHAR(255),
+            type: DataTypes.STRING(255),
             allowNull: false,
         },
         author_name: {
