@@ -24,7 +24,7 @@ for (let i = 0; i < files.length; i += 1) {
 
 async.eachOfSeries(metadatas, async (metadata, index) => {
     const year = metadata.upload_date.substr(0, 4);
-    const month = metadata.upload_date.substr(4, 2);
+    const month = metadata.upload_date.substr(4, 2) - 1;
     const day = metadata.upload_date.substr(6, 2);
 
     const date = new Date(year, month, day);
