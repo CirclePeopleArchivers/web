@@ -25,6 +25,18 @@ let joiSchemas = {
     },
 };
 
+function sortFn(a, b) {
+    if (a.like_count > b.like_count) {
+        return -1;
+    }
+
+    if (a.like_count < b.like_count) {
+        return 1;
+    }
+
+    return 0;
+}
+
 module.exports = {
     get: async (req, res) => {
         const videos = await Video
@@ -72,8 +84,7 @@ module.exports = {
                     },
                     order: [
                         ['parent_id', 'ASC'],
-                        ['like_count', 'DESC'],
-                        ['published_date', 'ASC'],
+                        ['published_date', 'DESC'],
                     ],
                     raw: true,
                 });
@@ -99,6 +110,8 @@ module.exports = {
                     }
                 }
             }
+
+            comments.sort(sortFn);
 
             return res.render('video-player', {
                 title: video.title,
