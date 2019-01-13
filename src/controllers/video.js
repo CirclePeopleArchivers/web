@@ -14,7 +14,7 @@ const Op = Sequelize.Op;
 
 module.exports = {
     get: async (req, res) => {
-        let videos = await Video
+        const videos = await Video
             .findAll({
                 order: [
                     ['upload_date', 'DESC'],

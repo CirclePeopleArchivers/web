@@ -2,6 +2,8 @@
  * Modules dependencies
  */
 
+const express = require('express');
+
 const VideoController = require('./controllers').Video;
 
 /**
@@ -14,4 +16,6 @@ const VideoController = require('./controllers').Video;
 
 module.exports = (app) => {
     app.get('/', VideoController.get);
+
+    app.use('/thumbnails', express.static('/mnt/z/thumbnails'));
 };
