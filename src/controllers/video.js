@@ -20,6 +20,9 @@ let joiSchemas = {
     getVideo: {
         id: Joi.string().required(),
     },
+    search: {
+        query: Joi.string().required(),
+    },
 };
 
 module.exports = {
@@ -101,6 +104,53 @@ module.exports = {
                 title: video.title,
                 video: video,
                 comments: comments,
+            });
+        } catch (e) {
+            console.log(e);
+            // Handle DB error
+
+            return false;
+        }
+    },
+    search: async (req, res) => {
+        const datas = req.query;
+
+        try {
+            await Joi.validate(datas, joiSchemas.getVideo, { abortEarly: false });
+        } catch (e) {
+            // Handle error
+        }
+
+        const keywords = datas.query.split(' ');
+
+        let like = [];
+
+        for (let i = 0; i < keywords.length; i += 1) {
+            like.push({
+                title: {
+                    [Op.iLike]: '%' + keywords[i] + '%',
+                },
+            });
+        }
+
+        try {
+            const videos = await Video
+                .findAll({
+                    where: {
+                        [Op.and]: like,
+                    },
+                    order: [
+                        ['view_count', 'DESC'],
+                        ['upload_date', 'DESC'],
+                        ['title', 'ASC'],
+                    ],
+                    raw: true,
+                });
+
+            return res.render('video-search', {
+                title: '',
+                query: datas.query,
+                videos: videos,
             });
         } catch (e) {
             console.log(e);
