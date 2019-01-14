@@ -11,6 +11,13 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 const fs = require('fs');
+const path = require('path');
+
+/**
+ * Additional dependencies
+ */
+
+const config = require('../configs/config');
 
 /**
  * Video controller
@@ -205,8 +212,8 @@ module.exports = {
                 return false;
             }
 
-            const path = '/mnt/z/final_output/' + video.id + '.' + video.file_type + '';
-            const stat = fs.statSync(path);
+            const pathFile = path.join(config.paths.videos, video.id + '.' + video.file_type);
+            const stat = fs.statSync(pathFile);
             const fileSize = stat.size;
             const range = req.headers.range;
 
@@ -217,7 +224,7 @@ module.exports = {
                     ? parseInt(parts[1], 10)
                     : fileSize - 1;
                 const chunkSize = (end - start) + 1;
-                const file = fs.createReadStream(path, { start, end });
+                const file = fs.createReadStream(pathFile, { start, end });
                 const head = {
                     'Content-Range': `bytes ${start}-${end}/${fileSize}`,
                     'Accept-Ranges': 'bytes',
@@ -234,7 +241,7 @@ module.exports = {
                 };
 
                 res.writeHead(200, head);
-                fs.createReadStream(path).pipe(res);
+                fs.createReadStream(pathFile).pipe(res);
             }
 
             return true;
