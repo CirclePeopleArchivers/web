@@ -37,6 +37,15 @@ function sortFn(a, b) {
     return 0;
 }
 
+function stickCirclePeopleCommentFn(arr, v) {
+    if (v.author_name === 'Circle People') {
+        return [v].concat(arr);
+    }
+
+    arr.push(v);
+    return arr;
+}
+
 module.exports = {
     get: async (req, res) => {
         const videos = await Video
@@ -112,11 +121,12 @@ module.exports = {
             }
 
             comments.sort(sortFn);
+            const orderedComments = comments.reduce(stickCirclePeopleCommentFn, []).slice(0, 50);
 
             return res.render('video-player', {
                 title: video.title,
                 video: video,
-                comments: comments,
+                comments: orderedComments,
             });
         } catch (e) {
             console.log(e);
