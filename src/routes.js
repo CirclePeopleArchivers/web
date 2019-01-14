@@ -22,4 +22,8 @@ module.exports = (app) => {
 
     app.use('/thumbnails', express.static('/mnt/z/thumbnails'));
     app.use('/assets', express.static(__dirname + '/views/assets'));
+    app.use('/avatars', express.static('/mnt/z/avatars'));
+    app.get('/avatars/*', (req, res) => {
+        res.sendFile(__dirname + '/views/assets/img/default.png');
+    });
 };

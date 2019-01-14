@@ -32,11 +32,7 @@
     <div>
         <% comments.forEach(function(comment, index) { %>
             <div class="media mb-3">
-                <% if (comment.author_id === 'UCt1GKXk_zkcBUEwAeXZ43RA') { %>
-                    <img src="/assets/img/avatar.jpg" class="mr-3 rounded-circle" width="64" height="64" />
-                <% } else { %>
-                    <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000" class="mr-3 rounded-circle" width="64" height="64" />
-                <% } %>
+                <img src="/avatars/<%= comment.author_id %>.jpg" class="mr-3 rounded-circle" width="64" height="64" />
                 <div class="media-body">
                     <h5 class="mt-0"><%= comment.author_name %></h5>
                     <%= comment.content %><br />
@@ -44,11 +40,7 @@
 
                     <% comment.children.forEach(function(child) { %>
                         <div class="media mt-3">
-                            <% if (child.author_id === 'UCt1GKXk_zkcBUEwAeXZ43RA') { %>
-                                <img src="/assets/img/avatar.jpg" class="mr-3 rounded-circle" width="64" height="64" />
-                            <% } else { %>
-                                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000" class="mr-3 rounded-circle" width="64" height="64" />
-                            <% } %>
+                            <img src="/avatars/<%= child.author_id %>.jpg" class="mr-3 rounded-circle" width="64" height="64" />
                             <div class="media-body">
                                 <h5 class="mt-0"><%= child.author_name %></h5>
                                 <%= child.content %><br />
